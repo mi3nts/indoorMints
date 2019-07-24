@@ -27,11 +27,21 @@ streamOn             = mD.streamON
 def streamJSONLatest(sensorDictionary,sensorName):
     if(streamOn):
         try:
-            sendURL = streamURL +"/"+sensorName + "/"+ macAddress
+            sendURL = streamURL +"/"+sensorName
             print(sendURL)
             sensorDictionary['nodeID']     = macAddress
             sensorDictionary['sensorID']   = sensorName
             print("-----------------")
+
+            # if(len(str(sensorDictionary))>64000):
+            #     print("Data Too Large, Data Length: "+ str(len(str(sensorDictionary))))
+            #     dateTime = sensorDictionary['dateTime']
+            #     sensorDictionary.clear()
+            #     sensorDictionary['dateTime'] = str(dateTime)
+            #     sensorDictionary['nodeID']   = macAddress
+            #     sensorDictionary['sensorID'] = sensorName
+
+
 
             r = requests.post(url =sendURL,\
                                   json=sensorDictionary,\
