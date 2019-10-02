@@ -40,9 +40,6 @@ void setup() {
 
 }
 
-
-
-
 // the loop routine runs over and over again forever:
 void loop() {
     startTime  = millis();
@@ -58,19 +55,27 @@ void loop() {
     //   readMGS001Mints();
     // }
 
-    delay(sensingPeriod);
-    if(BME280Online)
+    // delay(sensingPeriod);
+    // if(BME280Online)
+    // {
+    //   readBME280Mints();
+    // }
+
+    // delay(sensingPeriod);
+    // if(OPCN3Online)
+    // {
+    //   readOPCN3Mints();
+    // }
+
+
+    // delay(sensingPeriod);
+    if(OPCN3Online&&BME280Online)
     {
-      readBME280Mints();
+      readOPCN3WithBME280Mints();
     }
 
-    delay(sensingPeriod);
-    if(OPCN3Online)
-    {
-      readOPCN3Mints();
-    }
-//
-    delayMints(millis() - startTime,10000);
+
+    delayMints(millis() - startTime,5000);
 
  }
 

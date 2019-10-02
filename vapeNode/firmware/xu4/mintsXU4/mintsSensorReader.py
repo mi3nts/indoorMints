@@ -175,6 +175,8 @@ def sensorSend(sensorID,sensorData,dateTime):
         OPCN2Write(sensorData,dateTime)
     if(sensorID=="OPCN3"):
         OPCN3Write(sensorData,dateTime)
+    if(sensorID=="OPCN3WithBME280"):
+        OPCN3WithBME280Write(sensorData,dateTime)
     if(sensorID=="VEML6070"):
         VEML6070Write(sensorData,dateTime)
     if(sensorID=="TSL2591"):
@@ -1012,6 +1014,69 @@ def OPCN3Write(sensorData,dateTime):
 
         #Getting Write Path
         sensorFinisher(dateTime,sensorName,sensorDictionary)
+
+def OPCN3WithBME280Write(sensorData,dateTime):
+    dataOut    = sensorData.split(':')
+    sensorName = "OPCN3WithBME280"
+    valid      = dataOut[0]
+    dataLength=47
+    if((len(dataOut) == (dataLength +1)) and valid =="1"):
+        sensorDictionary = OrderedDict([
+                ("dateTime"    ,str(dateTime)),
+                ("valid"       ,dataOut[0]),
+            	("binCount0"   ,dataOut[1]),
+            	("binCount1"   ,dataOut[2]),
+            	("binCount2"   ,dataOut[3]),
+            	("binCount3"   ,dataOut[4]),
+            	("binCount4"   ,dataOut[5]),
+            	("binCount5"   ,dataOut[6]),
+            	("binCount6"   ,dataOut[7]),
+            	("binCount7"   ,dataOut[8]),
+            	("binCount8"   ,dataOut[9]),
+            	("binCount9"   ,dataOut[10]),
+            	("binCount10"  ,dataOut[11]),
+            	("binCount11"  ,dataOut[12]),
+            	("binCount12"  ,dataOut[13]),
+            	("binCount13"  ,dataOut[14]),
+            	("binCount14"  ,dataOut[15]),
+            	("binCount15"  ,dataOut[16]),
+            	("binCount16"  ,dataOut[17]),
+            	("binCount17"  ,dataOut[18]),
+            	("binCount18"  ,dataOut[19]),
+            	("binCount19"  ,dataOut[20]),
+            	("binCount20"  ,dataOut[21]),
+            	("binCount21"  ,dataOut[22]),
+            	("binCount22"  ,dataOut[23]),
+            	("binCount23"  ,dataOut[24]),
+                ("bin1TimeToCross"      ,dataOut[25]),
+                ("bin3TimeToCross"      ,dataOut[26]),
+                ("bin5TimeToCross"      ,dataOut[27]),
+                ("bin7TimeToCross"      ,dataOut[28]),
+                ("samplingPeriod"       ,dataOut[29]),
+                ("sampleFlowRate"       ,dataOut[30]),
+                ("temperature"          ,str(float(dataOut[31])/1000)),
+                ("humidity"             ,str(float(dataOut[32])/500)),
+                ("pm1"                  ,dataOut[33]),
+                ("pm2_5"                ,dataOut[34]),
+                ("pm10"                 ,dataOut[35]),
+                ("rejectCountGlitch"    ,dataOut[36]),
+                ("rejectCountLongTOF"   ,dataOut[37]),
+                ("rejectCountRatio"     ,dataOut[38]),
+                ("rejectCountOutOfRange",dataOut[39]),
+                ("fanRevCount"          ,dataOut[40]),
+                ("laserStatus"          ,dataOut[41]),
+                ("checkSum"             ,dataOut[42]),
+                ("temperatureBME"       ,dataOut[43]),
+                ("pressureBME"          ,dataOut[44]),
+                ("humidityBME"          ,dataOut[45]),
+                ("altitudeBME"          ,dataOut[46])
+                ])
+
+        #Getting Write Path
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+
+
+
 
 def PPD42NSDuoWrite(sensorData,dateTime):
     dataOut    = sensorData.split(':')

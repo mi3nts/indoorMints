@@ -177,3 +177,76 @@ void readOPCN3Mints(){
                         };
   sensorPrintMints("OPCN3",readings,43);
 }
+
+
+
+void readOPCN3WithBME280Mints(){
+
+  // startTimeOPCWithBME = millis();
+  struct histogramData  allData= opc.readHistogramData();
+  
+  float temperature    = bme280.getTemperature();
+  float pressure       = bme280.getPressure();
+  float humidity       = bme280.getHumidity();
+  float altitude       = bme280.calcAltitude(pressure);
+
+  String readings[47] =  { \
+                          String(allData.valid), \
+                          String(allData.binCount0), \
+                          String(allData.binCount1), \
+                          String(allData.binCount2), \
+                          String(allData.binCount3), \
+                          String(allData.binCount4), \
+                          String(allData.binCount5), \
+                          String(allData.binCount6), \
+                          String(allData.binCount7), \
+                          String(allData.binCount8), \
+                          String(allData.binCount9), \
+                          String(allData.binCount10), \
+                          String(allData.binCount11), \
+                          String(allData.binCount12), \
+                          String(allData.binCount13), \
+                          String(allData.binCount14), \
+                          String(allData.binCount15), \
+                          String(allData.binCount16), \
+                          String(allData.binCount17), \
+                          String(allData.binCount18), \
+                          String(allData.binCount19), \
+                          String(allData.binCount20), \
+                          String(allData.binCount21), \
+                          String(allData.binCount22), \
+                          String(allData.binCount23), \
+                          String(allData.bin1TimeToCross), \
+                          String(allData.bin3TimeToCross), \
+                          String(allData.bin5TimeToCross), \
+                          String(allData.bin7TimeToCross), \
+                          String(allData.samplingPeriod), \
+                          String(allData.sampleFlowRate), \
+                          String(allData.temperature), \
+                          String(allData.humidity), \
+                          String(allData.pm1,2), \
+                          String(allData.pm2_5,2), \
+                          String(allData.pm10,2),\
+                          String(allData.rejectCountGlitch), \
+                          String(allData.rejectCountLongTOF), \
+                          String(allData.rejectCountRatio), \
+                          String(allData.rejectCountOutOfRange), \
+                          String(allData.fanRevCount), \
+                          String(allData.laserStatus), \
+                          String(allData.checkSum), \
+                          String(temperature,2),\
+                          String(pressure,2),\
+                          String(humidity,2),\
+                          String(altitude,2) 
+                        };
+
+
+
+  sensorPrintMints("OPCN3WithBME280",readings,47);
+
+
+
+
+//  delayMints(millis() - startTimeOPCWithBME,2000);
+
+}

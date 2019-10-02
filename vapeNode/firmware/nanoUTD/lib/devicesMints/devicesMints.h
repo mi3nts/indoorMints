@@ -11,11 +11,6 @@
 // #include <Adafruit_INA219.h>
 // #include "SparkFun_SCD30_Arduino_Library.h"
 
-
-
-
-
-
 // void sendCommand2DevicesMints(String command);
 //
 // void setTimeMints(String command);
@@ -25,6 +20,9 @@
 // extern bool serialOut;
 
 //
+
+// unsigned long startTimeOPCWithBME;
+
 extern BME280 bme280;
 bool initializeBME280Mints();
 void readBME280Mints();
@@ -41,6 +39,8 @@ extern OPCN3NanoMints opc;
 bool initializeOPCN3Mints();
 void readOPCN3Mints();
 
+void readOPCN3WithBME280Mints();
+
 // extern Adafruit_INA219 ina;
 // bool initializeINA219Mints();
 // void readINA219Mints();
@@ -48,24 +48,5 @@ void readOPCN3Mints();
 
 // void printInput(String command);
 // void sensorPrintMints(String sensor,String readigs[],uint8_t numOfvals);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
